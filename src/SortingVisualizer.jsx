@@ -9,8 +9,8 @@ import SpeedSlider from './size-and-speed/SpeedSlider';
 
 const SortingVisualizer = () => {
   const [array, setArray] = useState([]);
-  const [arraySize, setArraySize] = useState(100);
-  const [speed, setSpeed] = useState(100);
+  const [arraySize, setArraySize] = useState(50);
+  const [speed, setSpeed] = useState(250);
   const abortControllerRef = useRef(null); 
   const [activeBars, setActiveBars] = useState([]);
   const [isSorting, setIsSorting] = useState(false);  // New state to track sorting
@@ -62,12 +62,12 @@ const SortingVisualizer = () => {
         onChange={(newSize) => setArraySize(newSize)}
         disabled = {isSorting}
       />
-        <button onClick={resetArray} className="px-4 py-2 bg-blue-500 text-white rounded">Generate New Array</button>
-        <button onClick={() => handleSort(bubbleSort)} className="px-4 py-2 bg-green-500 text-white rounded" >Bubble Sort</button>
-        <button onClick={() => handleSort(selectionSort)} className="px-4 py-2 bg-green-500 text-white rounded" >Selection Sort</button>
-        <button onClick={() => handleSort(insertionSort)} className="px-4 py-2 bg-green-500 text-white rounded" >Insertion Sort</button>
-        <button onClick={() => handleSort(mergeSort)} className="px-4 py-2 bg-green-500 text-white rounded" >Merge Sort</button>
-        <button onClick={() => handleSort(quickSort)} className="px-4 py-2 bg-green-500 text-white rounded" >Quick Sort</button>
+        <button onClick={resetArray} className="px-4 py-2 bg-blue-500 text-white rounded  hover:bg-blue-600 active:bg-blue-700 focus:outline-none">Generate New Array</button>
+        <button onClick={() => handleSort(bubbleSort)} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 active:bg-green-700 focus:outline-none" >Bubble Sort</button>
+        <button onClick={() => handleSort(selectionSort)} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 active:bg-green-700 focus:outline-none" >Selection Sort</button>
+        <button onClick={() => handleSort(insertionSort)} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 active:bg-green-700 focus:outline-none" >Insertion Sort</button>
+        <button onClick={() => handleSort(mergeSort)} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 active:bg-green-700 focus:outline-none" >Merge Sort</button>
+        <button onClick={() => handleSort(quickSort)} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 active:bg-green-700 focus:outline-none" >Quick Sort</button>
         <SpeedSlider
         min={0}
         max={499.99}
