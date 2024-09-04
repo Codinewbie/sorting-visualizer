@@ -15,6 +15,7 @@ const SortingVisualizer = () => {
   const [activeBars, setActiveBars] = useState([]);
   const [isSorting, setIsSorting] = useState(false);  // New state to track sorting
   const [notificationVisible, setNotificationVisible] = useState(false);
+  const [notificationAfterSoritng, setNotificationAfterSorting] = useState(false);
 
   useEffect(() => {
     resetArray();
@@ -43,6 +44,8 @@ const SortingVisualizer = () => {
       setIsSorting(true);
       let arr = array.slice();
       await sortFunction(arr, setArray, speed,abortControllerRef.current.signal, setActiveBars);
+      setNotificationAfterSorting(true);
+      setTimeout(() => setNotificationAfterSorting(false), 1000); // Hide notification after 2 seconds
       setIsSorting(false);  
     }
   };
@@ -89,6 +92,11 @@ const SortingVisualizer = () => {
       {notificationVisible && (
         <div className="fixed bottom-8 right-9 bg-black text-white text-sm px-4 py-2 rounded-lg opacity-80 z-10 transition-opacity duration-300">
           Sorting in progress... Please wait!
+        </div>
+      )}
+      {notificationAfterSoritng && (
+        <div className="fixed bottom-8 right-9 bg-black text-white text-sm px-4 py-2 rounded-lg opacity-80 z-10 transition-opacity duration-300">
+          Array is Sorted!
         </div>
       )}
     </div>
