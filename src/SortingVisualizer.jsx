@@ -14,9 +14,9 @@ const SortingVisualizer = () => {
   const abortControllerRef = useRef(null); 
   const [activeBars, setActiveBars] = useState([]);
   const [isSorting, setIsSorting] = useState(false);  // New state to track sorting
+ // const [isSortingCompleted, setIsSortingCompleted] = useState(false);  // New state to track sorting completion
   const [notificationVisible, setNotificationVisible] = useState(false);
-  const [notificationAfterSoritng, setNotificationAfterSorting] = useState(false);
-
+  //const [notificationAfterSoritng, setNotificationAfterSorting] = useState(false);
   useEffect(() => {
     resetArray();
   }, [arraySize]);
@@ -27,11 +27,14 @@ const SortingVisualizer = () => {
     }
     abortControllerRef.current = new AbortController();
     
+
     const newArray = [];
     for (let i = 0; i < arraySize; i++) {
       newArray.push(Math.floor(Math.random() * 450) + 10);
     }
     setArray(newArray);
+    setIsSorting(false);
+    //setNotificationAfterSorting(false);
   };
 
   const handleSort = async (sortFunction) => {
@@ -43,10 +46,22 @@ const SortingVisualizer = () => {
     else{
       setIsSorting(true);
       let arr = array.slice();
-      await sortFunction(arr, setArray, speed,abortControllerRef.current.signal, setActiveBars);
-      setNotificationAfterSorting(true);
-      setTimeout(() => setNotificationAfterSorting(false), 1000); // Hide notification after 2 seconds
-      setIsSorting(false);  
+      try{
+       let sorted = await sortFunction(arr, setArray, speed,abortControllerRef.current.signal, setActiveBars);
+        if(sorted ){
+          setNotificationVisible(true);
+          setTimeout(() => setNotificationVisible(false), 2000); // Hide notification after 2 seconds
+        }
+      } catch(error){
+        if (error.name !== 'AbortError') {
+          console.error("Error during sorting:", error);
+        }
+      } finally {
+        setIsSorting(false);
+      }
+      
+      
+    
     }
   };
 
@@ -76,27 +91,23 @@ const SortingVisualizer = () => {
         disabled = {isSorting}
       />
       </div>
-     
-      {/* <div className="flex bottom items-end  space-x-1"> */}
       <div className="flex items-end space-x-1 justify-center flex-grow w-full px-4 pb-8 mt-16">
-
+       
         {array.map((value, idx) => (
+          <div>
+            {/* <div className=""> {value}</div> */}
          <div
           key={idx}
           className={`${activeBars.includes(idx) ? 'bg-yellow-500' : 'bg-red-500'}`}
           style={{ height: `${value}px`,
                    width: `${barWidth}px` }}
        ></div>
+       </div>
         ))}
       </div>
       {notificationVisible && (
         <div className="fixed bottom-8 right-9 bg-black text-white text-sm px-4 py-2 rounded-lg opacity-80 z-10 transition-opacity duration-300">
-          Sorting in progress... Please wait!
-        </div>
-      )}
-      {notificationAfterSoritng && (
-        <div className="fixed bottom-8 right-9 bg-black text-white text-sm px-4 py-2 rounded-lg opacity-80 z-10 transition-opacity duration-300">
-          Array is Sorted!
+            {isSorting ? "Sorting in progress... Please wait!" : "Array is Sorted!"}
         </div>
       )}
     </div>

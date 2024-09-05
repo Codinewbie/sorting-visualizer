@@ -6,7 +6,7 @@ export const bubbleSort = async (array, setArray,speed,signal,setActiveBars) => 
       for (let j = 0; j < arr.length - i - 1; j++) {
         if(signal.aborted){
           setActiveBars([]); 
-          return;
+          return false;
         } 
 
         setActiveBars([j, j + 1]); // Highlight the bars being compared
@@ -23,9 +23,11 @@ export const bubbleSort = async (array, setArray,speed,signal,setActiveBars) => 
       }
       if(ans ===false){
         setActiveBars([]); 
-          return;
+          return true;
 
       }
+      
     }
+    return true;
   };
   

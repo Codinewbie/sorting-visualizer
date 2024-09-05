@@ -5,9 +5,9 @@ export const insertionSort = async(array, setArray,speed,signal,setActiveBars) =
     for( let i = 0; i < arr.length-1; i++){
 
       for(let j = i+1; j>=0 ; j--){
-        if(signal.aborted) {
+        if(signal.aborted){
           setActiveBars([]);
-          return;
+          return false;
         }
        
 
@@ -32,4 +32,5 @@ export const insertionSort = async(array, setArray,speed,signal,setActiveBars) =
       
 
     }
+    return true;
   }

@@ -8,7 +8,7 @@ export const selectionSort = async(array , setArray,speed,signal,setActiveBars)=
       for(let j = i+1 ; j<arr.length; j++){
         if(signal.aborted) {
           setActiveBars([]);
-          return;
+          return false;
         }
 
         setActiveBars([ind, j]); // Highlight the bars being compared
@@ -26,4 +26,5 @@ export const selectionSort = async(array , setArray,speed,signal,setActiveBars)=
       await new Promise((resolve) => setTimeout(resolve,500-speed));
       setActiveBars([]);
     }
+    return true;
   }
