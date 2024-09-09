@@ -11,7 +11,7 @@ const SortingVisualizer = () => {
   const [array, setArray] = useState([]);
   const [sameArray, setSameArray] = useState([]);
   const [arraySize, setArraySize] = useState(50);
-  const [speed, setSpeed] = useState(250);
+  const [speed, setSpeed] = useState(499.99);
   const abortControllerRef = useRef(null); 
   const [activeBars, setActiveBars] = useState([]);
   const [isSorting, setIsSorting] = useState(false);  // New state to track sorting
@@ -90,7 +90,7 @@ const SortingVisualizer = () => {
         onChange={(newSize) => setArraySize(newSize)}
         disabled = {isSorting}
       />
-        <button onClick={setPreviousArray} className="px-4 py-2 bg-blue-500 text-white rounded  hover:bg-blue-600 active:bg-blue-700 focus:outline-none">Use Previous Array</button>
+        <button onClick={setPreviousArray} className="px-4 py-2 bg-blue-500 text-white rounded  hover:bg-blue-600 active:bg-blue-700 focus:outline-none">Use Current Array</button>
         <button onClick={resetArray} className="px-4 py-2 bg-blue-600 text-white rounded  hover:bg-blue-700 active:bg-blue-800 focus:outline-none">Create New Array</button>
         <button onClick={() => handleSort(bubbleSort)} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 active:bg-green-700 focus:outline-none" >Bubble Sort</button>
         <button onClick={() => handleSort(selectionSort)} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 active:bg-green-700 focus:outline-none" >Selection Sort</button>
@@ -99,7 +99,7 @@ const SortingVisualizer = () => {
         <button onClick={() => handleSort(quickSort)} className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 active:bg-green-700 focus:outline-none" >Quick Sort</button>
         <SpeedSlider
         min={0}
-        max={499.99}
+        max={499.999999999999999}
         value={speed}
         onChange={(newSpeed) => setSpeed(newSpeed)}
         disabled = {isSorting}
@@ -134,11 +134,11 @@ const SortingVisualizer = () => {
       </div>
       {sortingTime && (
         <div className="flex justify-center items-center bg-gray-700 text-white py-2 w-full">
-          <p>Time Taken: {sortingTime} seconds</p>
+          <p> Time Taken: {sortingTime} seconds</p>
         </div>
       )}
       {notificationVisible && (
-        <div className="fixed bottom-8 right-9 bg-black text-white text-sm px-4 py-2 rounded-lg opacity-80 z-10 transition-opacity duration-300">
+        <div className={`fixed ${isSorting ? "right-0" : "left-0"} bottom-1  text-white text-sm px-4 py-2 rounded-lg opacity-80 z-10 transition-opacity duration-300`}>
             {isSorting ? "Sorting in progress... Please wait!" : `Array gets Sorted`}
         </div>
       )}
