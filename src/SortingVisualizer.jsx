@@ -138,7 +138,7 @@ const SortingVisualizer = () => {
         </div>
       )}
       {notificationVisible && (
-        <div className={`fixed ${isSorting ? "right-0" : "left-0"} bottom-1  text-white text-sm px-4 py-2 rounded-lg opacity-80 z-10 transition-opacity duration-300`}>
+        <div className={`fixed ${sortingTime ? "" : "bg-black"} ${isSorting ? "right-0" : "left-0"} bottom-1  text-white text-sm px-4 py-2 rounded-lg opacity-80 z-10 transition-opacity duration-300`}>
             {isSorting ? "Sorting in progress... Please wait!" : `Array gets Sorted`}
         </div>
       )}
