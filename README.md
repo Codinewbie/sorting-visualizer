@@ -1,3 +1,30 @@
+# Sorting Visualizer
+
+**Sorting Visualizer** is an interactive web application built with **React**, **JavaScript**, **HTML**, and **CSS**. This project visually demonstrates various sorting algorithms, allowing users to select different algorithms and observe the sorting process in action.
+
+## Table of Contents
+
+- [Technologies Used](#technologies-used)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Technologies Used
+
+- **React**: A JavaScript library for building user interfaces.
+- **JavaScript**: A programming language for dynamic web content.
+- **HTML**: The standard markup language for creating web pages.
+- **CSS**: A stylesheet language used for describing the presentation of a document.
+
+## Features
+
+- Visual representation of various sorting algorithms.
+- Interactive controls to select different sorting algorithms.
+- Real-time updates showing the sorting process.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
